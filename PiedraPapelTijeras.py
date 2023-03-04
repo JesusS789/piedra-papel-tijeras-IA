@@ -17,6 +17,7 @@ timer = 0
 stateResult = False
 startGame = False
 set_end = False
+playerMove = None
 tiempofinal = 0
 scores = [0, 0]  # [IA, Jugador]
 
@@ -100,7 +101,7 @@ while True:
 
     # De ser 'stateResult = True' implica que finalizó un juego, por ende la IA hizo un 
     # movimiento y debe mostrarse, además muestra algunos mensajes en base al ganador
-    if stateResult:
+    if stateResult and not(playerMove==None):
         imgBG = cvzone.overlayPNG(imgBG, imgAI, (149, 310))
         if scores[0]==2:
             
