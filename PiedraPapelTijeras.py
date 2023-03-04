@@ -106,13 +106,13 @@ while True:
             
             imgBG = cvzone.overlayPNG(imgBG, imgAI_Wins, (77, 30))
             imgBG = cvzone.overlayPNG(imgBG, reaccion_devil, (406, 169))
-            imgBG = cvzone.overlayPNG(imgBG, reaccion_cry, (1112, 169))
+            imgBG = cvzone.overlayPNG(imgBG, reaccion_cry, (1110, 169))
             set_end = True
         if scores[1]==2:
             
             imgBG = cvzone.overlayPNG(imgBG, imgPL_Wins, (77, 30))
             imgBG = cvzone.overlayPNG(imgBG, reaccion_cry, (406, 169))
-            imgBG = cvzone.overlayPNG(imgBG, reaccion_devil, (1112, 169))
+            imgBG = cvzone.overlayPNG(imgBG, reaccion_devil, (1110, 169))
             set_end = True
             
     
