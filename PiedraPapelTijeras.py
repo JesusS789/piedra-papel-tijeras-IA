@@ -16,10 +16,11 @@ detector = HandDetector(detectionCon=0.8, maxHands=1)
 timer = 0
 stateResult = False
 startGame = False
-game_end = False
+set_end = False
 tiempofinal = 0
 scores = [0, 0]  # [IA, Jugador]
 
+# Se cargan algunas imagenes
 reaccion_devil = cv2.imread(f'Resources/Devil.png', cv2.IMREAD_UNCHANGED)
 reaccion_cry = cv2.imread(f'Resources/Cry.png', cv2.IMREAD_UNCHANGED)
 imgPL_Wins = cv2.imread(f'Resources/Jugador.png', cv2.IMREAD_UNCHANGED)
@@ -104,28 +105,29 @@ while True:
         if scores[0]==2:
             
             imgBG = cvzone.overlayPNG(imgBG, imgAI_Wins, (77, 30))
-            imgBG = cvzone.overlayPNG(imgBG, reaccion_devil, (408, 169))
+            imgBG = cvzone.overlayPNG(imgBG, reaccion_devil, (406, 169))
             imgBG = cvzone.overlayPNG(imgBG, reaccion_cry, (1112, 169))
-            game_end = True
-        if scores[1]==1:
+            set_end = True
+        if scores[1]==2:
             
             imgBG = cvzone.overlayPNG(imgBG, imgPL_Wins, (77, 30))
-            imgBG = cvzone.overlayPNG(imgBG, reaccion_cry, (408, 169))
+            imgBG = cvzone.overlayPNG(imgBG, reaccion_cry, (406, 169))
             imgBG = cvzone.overlayPNG(imgBG, reaccion_devil, (1112, 169))
-            game_end = True
+            set_end = True
             
     
-    cv2.imshow("BG", imgBG)
+    cv2.imshow("Presiona 's' para iniciar juego. 'q' para salir", imgBG)
 
-    if game_end and tiempofinal==0:
+    if set_end and tiempofinal==0:
             tiempofinal = time.time()
 
-    if game_end:
+    # Al terminar un 'set' (alguien llega a una puntuación de 2), se reinician los puntajes
+    if set_end:
         contador = time.time() - tiempofinal
         if contador > 3:
             scores = [0, 0]
             tiempofinal = 0
-            game_end = False
+            set_end = False
             startGame = False
             stateResult = False
     # Espera a la tecla para iniciar el juego (s) o terminar la aplicación (q)
